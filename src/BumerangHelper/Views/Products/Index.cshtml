@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BumerangHelper.Models.ViewModels.ProductViewModel>
+
+<h1>Список товаров</h1>
+<br />
+<table id="products" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Страна производитель</th>
+            <th>Цена</th>
+            <th>Ед.Изм.</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Наименование</th>
+            <th>Страна производитель</th>
+            <th>Цена</th>
+            <th>Ед.Изм.</th>
+            <th>Действие</th>
+        </tr>
+    </tfoot>
+    <tbody>
+        @foreach(var row in Model){
+            <tr>
+                <td>@row.Name</td>
+                <td>@row.Country</td>
+                <td>@row.LastPrice</td>
+                <td>@row.Unit</td>
+                <td>
+                    <input type="button" onclick="location.href='@Url.Action("Details", "Products", new { id = row.ProductID })'" value="Детали" />
+                    <input type="button" onclick="location.href='@Url.Action("Edit", "Products", new { id = row.ProductID })'" value="Изменить" />
+                    <input type="button" onclick="location.href='@Url.Action("Delete", "Products", new { id = row.ProductID })'" value="Удалить"/>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
